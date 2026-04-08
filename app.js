@@ -53,6 +53,28 @@ Ex: /v2/senai/estados
 Ex: /v2/senai/dados/estados
 */
 
+/*
+-------------- | Variáveis do Endpoint via Params e Query Params | -------------- 
+
+--> PARAMS:
+
+Params(:id): Identificam um recurso específico. 
+É como o CPF de uma pessoa na URL. Sem ele, a página geralmente não carrega.
+
+Exemplo: /usuarios/10 (Busca o usuário de ID 10).
+
+--> QUERY PARAMS:
+
+Query Params (?key=value): Servem para filtrar ou organizar uma lista. 
+Vêm depois da interrogação e posso passar mais de um parâmetro, utilizando o & como divisor.
+
+Exemplo: /usuarios?cor=azul (Busca todos os usuários, mas filtra pelos que usam a cor azul).
+
+OBSERVAÇÃO: caso o filtro venha a ser o ID (chave primaria), usamos a via params
+            caso o filtro venha a ser outros tipos de dados, usamos a via Query Params
+
+*/
+
 // Import das dependências para criar a APi
 const express = require('express')
 const cors    = require('cors')
@@ -114,6 +136,9 @@ app.listen(8080, function(){
 
 
 // Endepoint que retorna os dados dos estados | com o filtro (uf)
+//app.get('/v1/senai/dados/estado/', function(request, response) -> via Query Parms
+//let uf     = request.query.uf
+
 app.get('/v1/senai/dados/estado/:uf', function(request, response){
     
     let uf     = request.params.uf
